@@ -1,0 +1,8 @@
+<!--pages/index/index.wxml-->
+<view class="indexContainer">
+    <swiper class="adContainer">
+        <swiper-item class="adItem">
+            <image src=""></image>
+        </swiper-item>
+    </swiper>
+</view>
