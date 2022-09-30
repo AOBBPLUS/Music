@@ -1,8 +1,65 @@
 <!--pages/index/index.wxml-->
 <view class="indexContainer">
-    <swiper class="adContainer">
-        <swiper-item class="adItem">
-            <image src=""></image>
+    <!-- 轮播图区域 -->
+    <swiper class="banners" autoplay indicator-dots indicator-color indicator-active-color="#d43c33">
+        <!--需要指定唯一标识wx:key，否则警告-->
+        <swiper-item wx:for ="{{bannerList}}" wx:key="bannerId">
+            <image src="{{item.pic}}"></image>
         </swiper-item>
     </swiper>
+    <!--五个图标导航区域-->
+    <view class="adContainer">
+        <view class="adItem">
+            <text class="iconfont icon-meirituijian"></text>
+            <text>每日推荐</text>
+        </view>
+        <view class="adItem">
+            <text class="iconfont icon-gedan1"></text>
+            <text>歌单</text>
+        </view>
+        <view class="adItem">
+            <text class="iconfont icon-icon-ranking"></text>
+            <text>排行榜</text>
+        </view>
+        <view class="adItem">
+            <text class="iconfont icon-diantai"></text>
+            <text>电台</text>
+        </view>
+        <view class="adItem">
+            <text class="iconfont icon-zhibobofangshexiangjitianxianxianxing"></text>
+            <text>直播</text>
+        </view>
+    </view>
+    <!--推荐歌曲区域-->
+    <view class="recommendContainer">
+        <!--头部-->
+        <NavHeader tittle="推荐歌曲" Nav="为您精心推荐"></NavHeader>
+        <!--内容区域-->
+        <scroll-view class="recommendScroll" enable-flex scroll-x scroll-y="false">
+            <view class="scrollItem" wx:for="{{recommendList}}" wx:key="id">
+                <image src="{{item.picUrl}}"></image>
+                <text>{{item.name}}</text>
+            </view>
+
+        </scroll-view>
+    </view>
+    <!--排行榜区域-->
+    <view class="topList">
+        <!--头部-->
+        <NavHeader tittle="排行榜" Nav="热歌风向标"></NavHeader>
+        <!--内容区域-->
+        <swiper class="topListSwiper" circular next-margin="50rpx">
+            <swiper-item wx:for="{{topList}}" wx:key="name">
+                <view class="swiperItem">
+                <view class="tittle">{{item.name}}</view>
+                <view class="musicItem" wx:for="{{item.tracks}}" wx:key="id" wx:for-item="musicItem">
+                    <image src="{{musicItem.al.picUrl}}"></image>
+                    <text class="order">{{index + 1}}</text>
+                    <text class="musicName">{{musicItem.name}}</text>
+                </view>
+                </view>
+            </swiper-item>
+
+        </swiper>
+    </view>
 </view>
